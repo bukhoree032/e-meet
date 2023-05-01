@@ -11,6 +11,50 @@
 |
 */
 
+Route::get('pages/meeting', 'MeetingController@index')->name('index.meeting');
+
+Route::prefix('manage')->name('manage.')->group(function() {
+    Route::get('/pages/DetailMeeting/{id}/', 'MeetingController@PageDetailMeeting')->name('page.detail_meeting');
+
+    Route::get('/pages/create-meeting', 'MeetingController@create')->name('create.meeting'); //1111111111111111111111111
+    Route::post('/pages/create-insert/meeting/', 'MeetingController@CreateMeeting')->name('insert.meeting'); //2222222222222222
+    Route::get('/pages/create-insert/CreateMeeting2/{id}/', 'MeetingController@CreateMeeting2')->name('create.meeting2');
+    Route::post('/pages/create-insert/Meeting2/{id}/', 'MeetingController@insertMeeting2')->name('insert.meeting2');
+
+    Route::get('/pages/EditMeeting/{id}/', 'MeetingController@PageEditMeeting')->name('edit.meeting');
+    Route::post('/pages/EditFarmeStep1/{id}/', 'MeetingController@EditFarmeStep1')->name('update.farme1');
+    Route::get('/pages2/EditFarme/{id}/', 'MeetingController@PageEditFarme2')->name('edit.farme2');
+    Route::post('/pages/EditFarmeStep2/{id}/', 'MeetingController@EditFarmeStep2')->name('update.farme2');
+
+    Route::get('/pages/delet/{id}/', 'MeetingController@delet')->name('delet.meeting');
+});
+
+Route::get('pages/report', 'ReportmeetingController@index')->name('index.report');
+
+Route::prefix('manage')->name('manage.')->group(function() {
+    Route::get('/pages/DetailReport/{id}/', 'ReportmeetingController@PageDetailMeeting')->name('page.detail_report');
+
+    Route::get('/pages/create-report', 'ReportmeetingController@create')->name('create.report'); //1111111111111111111111111
+    Route::post('/pages/create-insert/report/', 'ReportmeetingController@CreateMeeting')->name('insert.report'); //2222222222222222
+
+    Route::get('/pages/EditReport/{id}/', 'ReportmeetingController@PageEditMeeting')->name('edit.report');
+    Route::post('/pages/EditFarmeStep1/{id}/', 'ReportmeetingController@EditFarmeStep1')->name('update.farme1');
+    Route::get('/pages2/EditFarme/{id}/', 'ReportmeetingController@PageEditFarme2')->name('edit.farme2');
+    Route::post('/pages/EditFarmeStep2/{id}/', 'ReportmeetingController@EditFarmeStep2')->name('update.farme2');
+
+    Route::get('/pages/delet/{id}/', 'ReportmeetingController@delet')->name('delet.report');
+});
+
+
+
+
+
+
+
+
+
+
+
 Route::get('pages/manage_flower', 'FlowerController@index')->name('index.flower');
 
 Route::prefix('manage')->name('manage.')->group(function() {

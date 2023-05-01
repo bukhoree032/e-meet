@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use Modules\Manage\Entities\Stores;
 use Modules\Manage\Entities\Flowers;
 use Modules\Manage\Entities\Farmes;
+use Modules\Manage\Entities\Meeting;
 
 use Illuminate\Support\Str;
 use App\Http\Controllers\UploadeFileController;
@@ -19,6 +20,7 @@ class Repository
         $this->classModelStores = Stores::class;
         $this->classModelFlowers = Flowers::class;
         $this->classModelFarmes = Farmes::class;
+        $this->classModelMeeting = Meeting::class;
     }
 
     /**
@@ -27,16 +29,17 @@ class Repository
      */
     public function index($db)
     {
-        if($db == "farmes"){
-            $colum_dis = "FA_SUB_DISTRICT";
-        }elseif($db == "stores"){
-            $colum_dis = "S_SUB_DISTRICT";
-        }
+        // if($db == "meeting"){
+        //     $colum_dis = "FA_SUB_DISTRICT";
+        // }elseif($db == "stores"){
+        //     $colum_dis = "S_SUB_DISTRICT";
+        // }
         $data = \DB::table($db)
-                        ->select($db.'.id as id_db',$db.'.*','districts.name_th as name_dis','amphures.name_th as name_amp','provinces.name_th as name_prv','districts.*','amphures.*','provinces.*')
-                        ->join('districts',$db.'.'.$colum_dis,'=','districts.id')
-                        ->join('amphures','districts.amphure_id','=','amphures.id')
-                        ->join('provinces','amphures.province_id','=','provinces.id')
+                        ->select('*')
+                        // ->select($db.'.id as id_db',$db.'.*','districts.name_th as name_dis','amphures.name_th as name_amp','provinces.name_th as name_prv','districts.*','amphures.*','provinces.*')
+                        // ->join('districts',$db.'.'.$colum_dis,'=','districts.id')
+                        // ->join('amphures','districts.amphure_id','=','amphures.id')
+                        // ->join('provinces','amphures.province_id','=','provinces.id')
                         ->get();
 
         return $data;
@@ -106,6 +109,15 @@ class Repository
      */
     public function insert($request,$db)
     {
+        $request['title_no_meeting'] = serialize($request['title_no_meeting']);
+        $request['name_no_meeting'] = serialize($request['name_no_meeting']);
+        $request['lastname_no_meeting'] = serialize($request['lastname_no_meeting']);
+        $request['position_no_meeting'] = serialize($request['position_no_meeting']);
+        $request['reason_no_meeting'] = serialize($request['reason_no_meeting']);
+        $request['title_p_meeting'] = serialize($request['title_p_meeting']);
+        $request['name_p_meeting'] = serialize($request['name_p_meeting']);
+        $request['lastname_p_meeting'] = serialize($request['lastname_p_meeting']);
+        
         $insert = $this->$db::create($request);
         
         return $insert;

@@ -50,6 +50,26 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- upload file -->
         {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
         {{-- Includable CSS --}}
+        <link href="{{ asset('frontend/assets/css/bootstrap.css') }}" rel="stylesheet">
+        <link href="{{ asset('frontend/assets/css/dataTables.bootstrap4.css') }}" rel="stylesheet">
+        <script type="text/javascript" src="{{ asset('frontend/editor/ckeditor/ckeditor.js') }}"></script>
+        <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        
+        
+        {{-- datetime --}}
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        {{-- <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+        <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" /> --}}
+
+        <link rel="stylesheet" href="https://www.ninenik.com/js/jquery.datetimepicker.css">
+        <script src="https://www.ninenik.com/js/jquery.datetimepicker.full.js"></script>
+        {{-- <link rel="stylesheet" href="{{ asset('frontend/assets/css/datePS.css') }}">
+        <script src="{{ asset('frontend/assets/js/datePS.js') }}"></script> --}}
+      {{-- datetime --}}
+      
+      <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+      <link href="{{ asset('frontend/assets/css/image_size.css') }}" rel="stylesheet">
         <style>
             .pointer {cursor: pointer;}
         </style>

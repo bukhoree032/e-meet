@@ -22,7 +22,7 @@
             <!--begin::Card-->
             <div class="card card-custom gutter-b example example-compact">
                 <div class="card-header">
-                    <h3 class="card-title">เพิ่มข้อมูลดอกไม้กลุ่มเกษตรกร และฟาร์ม</h3>
+                    <h3 class="card-title">เพิ่มข้อมูลบันทึกการประชุม</h3>
                     <div class="card-toolbar">
                         <div class="example-tools justify-content-center">
                             <span class="example-toggle" data-toggle="tooltip" title="View code"></span>
@@ -31,25 +31,27 @@
                     </div>
                 </div>
                 <!--begin::Form-->
-                <form action="{{ route('manage.insert.farme') }}" method="POST" enctype="multipart/form-data">
+                {{-- <form action="{{ route('manage.insert.farme') }}" method="POST" enctype="multipart/form-data">
+                    @dd($ID); --}}
+                <form action="{{ route('manage.insert.meeting2',$ID) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
                         <div class="form-group row">
                             <div class="col-lg-3">
                                 <label>เริ่มประชุมเวลา:</label>
-                                <input class="form-control" type="time" name="">
+                                <input class="form-control" type="time" name="begin_meet">
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-11">
                                 <label>ระเบียบวาระที่ 1 ประธานแจ้งให้ทราบ:</label>
-                                <input type="text" class="form-control " name="" placeholder="ระเบียบวาระที่ 1 " />
+                                <input type="text" class="form-control " name="agenda1" placeholder="ระเบียบวาระที่ 1 " />
                             </div >
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-4  margin_top">
                                 <label>ระเบียบวาระที่ 2 ประชุมครั้งที่:</label>
-                                    <select id="pro" class="form-control" name="" style="width: 100%;">
+                                    <select id="pro" class="form-control" name="r_meet_no" style="width: 100%;">
                                         <option selected>--ประชุมครั้งที่--</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -65,7 +67,7 @@
                                 </div>
                                 <div class="col-lg-4  margin_top">
                                     <label>ประชุมปี:</label>
-                                    <select id="pro" class="form-control" name="" style="width: 100%;">
+                                    <select id="pro" class="form-control" name="r_meeting_year" style="width: 100%;">
                                         <option selected>--ประชุมครั้งที่--</option>
                                         <option value="2560">2560</option>
                                         <option value="2561">2561</option>
@@ -81,13 +83,13 @@
                                 </div>
                                 <div class="col-lg-4  margin_top">
                                     <label>วัน/เดือน/ปี:</label>
-                                    <input type="text" class="form-control " name="" placeholder="วัน/เดือน/ปี" />
+                                    <input type="text" class="form-control " name="r_meeting_date" placeholder="วัน/เดือน/ปี" />
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-12  margin_top">
                                     <label>มติที่ประชุม	รับรอง/แก้ไขเรื่อง:</label>
-                                    <input type="text" class="form-control " name="" placeholder="มติที่ประชุม	รับรอง/แก้ไขเรื่อง" />
+                                    <input type="text" class="form-control " name="r_meet_edit" placeholder="มติที่ประชุม	รับรอง/แก้ไขเรื่อง" />
                                 </div>
                         </div>
                         <div class="form-group row">
@@ -98,15 +100,15 @@
 
                                 <div class="col-lg-12  margin_top">
                                     <label>1.1 สถานการณ์ยาเสพติด:</label>
-                                    <input type="text" class="form-control " name="" placeholder="สถานการณ์ยาเสพติด" />
+                                    <input type="text" class="form-control " name="narcotics" placeholder="สถานการณ์ยาเสพติด" />
                                 </div>
                                 <div class="col-lg-12  margin_top">
                                     <label>1.2 สถานการณ์ความไม่สงบ :</label>
-                                    <input type="text" class="form-control " name="" placeholder="สถานการณ์ความไม่สงบ" />
+                                    <input type="text" class="form-control " name="unrest" placeholder="สถานการณ์ความไม่สงบ" />
                                 </div>
                                 <div class="col-lg-12  margin_top">
                                     <label>1.3 การปฏิบัติหน้าที่เวรยาม:</label>
-                                    <input type="text" class="form-control " name="" placeholder="การปฏิบัติหน้าที่เวรยาม" />
+                                    <input type="text" class="form-control " name="guard" placeholder="การปฏิบัติหน้าที่เวรยาม" />
                                 </div>
 
 
@@ -114,17 +116,26 @@
 
                                 <div class="col-lg-12  margin_top">
                                     <label>2.1 โครงการเสริมสร้างความเข้มแข็งให้กับตำบล (ศอ.บต.):</label>
-                                    <input type="text" class="form-control " name="" placeholder="โครงการเสริมสร้างความเข้มแข็งให้กับตำบล" />
+                                    <input type="text" class="form-control " name="strength" placeholder="โครงการเสริมสร้างความเข้มแข็งให้กับตำบล" />
+                                </div>
+                                <div class="col-lg-12" style="margin-top: 20px">
+                                    <div class="field" align="left">
+                                        <input type="file" style="display:none" id="upload-images" name="pictures[]" multiple="multiple"></input>
+                                        <div id="uploads" class="drop-areas">
+                                            เพิ่มรูปภาพกลุ่มทั้งหมด +
+                                        </div>
+                                        <div id="thumbnails"></div>
+                                    </div>
                                 </div>
                                 <div class="col-lg-12  margin_top">
                                     <label>2.2 โครงการของส่วนราชการในตำบล:</label>
-                                    <input type="text" class="form-control " name="" placeholder="โครงการของส่วนราชการในตำบล" />
+                                    <input type="text" class="form-control " name="government" placeholder="โครงการของส่วนราชการในตำบล" />
                                 </div>
 
 
                                 <div class="col-lg-12  margin_top">
                                     <label>3. ภารกิจด้านประสานแผนงานพัฒนาพื้นที่และงบประมาณ (ปลัด อปท.):</label>
-                                    <input type="text" class="form-control " name="" placeholder="ภารกิจด้านประสานแผนงานพัฒนาพื้นที่และงบประมาณ" />
+                                    <input type="text" class="form-control " name="coordinate" placeholder="ภารกิจด้านประสานแผนงานพัฒนาพื้นที่และงบประมาณ" />
                                 </div>
 
 
@@ -132,15 +143,15 @@
 
                                 <div class="col-lg-12  margin_top">
                                     <label>4.1 สถานการณ์สุขอนามัย (โควิด 19 และอื่นๆ):</label>
-                                    <input type="text" class="form-control " name="" placeholder="สถานการณ์สุขอนามัย" />
+                                    <input type="text" class="form-control " name="covid" placeholder="สถานการณ์สุขอนามัย" />
                                 </div>
                                 <div class="col-lg-12  margin_top">
                                     <label>4.2 บ้าน/ซ่อมบ้าน (ส่งต่อ พอช.):</label>
-                                    <input type="text" class="form-control " name="" placeholder="บ้าน/ซ่อมบ้าน (ส่งต่อ พอช.)" />
+                                    <input type="text" class="form-control " name="home" placeholder="บ้าน/ซ่อมบ้าน (ส่งต่อ พอช.)" />
                                 </div>
                                 <div class="col-lg-12  margin_top">
                                     <label>4.3 ผู้สูงอายุ :</label>
-                                    <input type="text" class="form-control " name="" placeholder="ผู้สูงอายุ" />
+                                    <input type="text" class="form-control " name="elder" placeholder="ผู้สูงอายุ" />
                                 </div>
                                 
 
@@ -149,30 +160,29 @@
 
                                 <div class="col-lg-12  margin_top">
                                     <label>5.1 สถานการณ์เด็กหลุดจากระบบการศึกษา :</label>
-                                    <input type="text" class="form-control " name="" placeholder="สถานการณ์เด็กหลุดจากระบบการศึกษา" />
+                                    <input type="text" class="form-control " name="education" placeholder="สถานการณ์เด็กหลุดจากระบบการศึกษา" />
                                 </div>
                                 
                                 <div class="col-lg-12  margin_top">
                                     <label>6. กลุ่มภารกิจด้านอำนวยการและการบริหาร(ปลัดอำเภอผู้เป้นหัวหน้าประจำตำบล):</label>
-                                    <input type="text" class="form-control " name="" placeholder="กลุ่มภารกิจด้านอำนวยการและการบริหาร" />
+                                    <input type="text" class="form-control " name="executive" placeholder="กลุ่มภารกิจด้านอำนวยการและการบริหาร" />
                                 </div>
 
                                 <div class="col-lg-12  margin_top">
                                     <label>มติที่ประชุม:</label>
-                                    <input type="text" class="form-control " name="" value="รับทราบ" placeholder="ภารกิจด้านประสานแผนงานพัฒนาพื้นที่และงบประมาณ" />
+                                    <input type="text" class="form-control " name="r_meeting" value="รับทราบ" placeholder="ภารกิจด้านประสานแผนงานพัฒนาพื้นที่และงบประมาณ" />
                                 </div>
                                 
-
 
                                 <label><b>ระเบียบวาระที่ 4 :</b></label>
 
                                 <div class="col-lg-12  margin_top">
                                     <label>เรื่องเพื่อพิจารณา:</label>
-                                    <textarea class="form-control" name="" rows="3" cols="50"></textarea>
+                                    <textarea class="form-control" name="agenda4" rows="3" cols="50"></textarea>
                                 </div>
                                 <div class="col-lg-12  margin_top">
                                     <label>มติที่ประชุม:</label>
-                                    <textarea class="form-control" name="" rows="3" cols="50"></textarea>
+                                    <textarea class="form-control" name="resolution4" rows="3" cols="50"></textarea>
                                 </div>
                                 
 
@@ -181,11 +191,11 @@
 
                                 <div class="col-lg-12  margin_top">
                                     <label>เรื่องอื่น ๆ:</label>
-                                    <textarea class="form-control" name="" rows="3" cols="50"></textarea>
+                                    <textarea class="form-control" name="agenda5" rows="3" cols="50"></textarea>
                                 </div>
                                 <div class="col-lg-12  margin_top">
                                     <label>มติที่ประชุม:</label>
-                                    <textarea class="form-control" name="" rows="3" cols="50"></textarea>
+                                    <textarea class="form-control" name="resolution5" rows="3" cols="50"></textarea>
                                 </div>
                                 
 
@@ -194,46 +204,46 @@
 
                                 <div class="col-lg-12  margin_top">
                                     <label>ข้อสั่งการ/ปิดการประชุม:</label>
-                                    <textarea class="form-control" name="" rows="3" cols="100"></textarea>
+                                    <textarea class="form-control" name="agenda6" rows="3" cols="100"></textarea>
                                 </div>
                                 
                                 <div class="form-group row">
                                     <div class="col-lg-3">
                                         <label>ปิดการประชุมเวลา:</label>
-                                        <input class="form-control" type="time" name="">
+                                        <input class="form-control" type="time" name="end_meet">
                                     </div>
                                 </div>
                                 
                                 <div class="form-group row">
                                     <div class="col-lg-3">
                                         <label>ชื่อผู้จดบันทึกการประชุม:</label>
-                                        <input class="form-control" type="" name="">
+                                        <input class="form-control" type="" name="name_record">
                                     </div>
                                     <div class="col-lg-3">
                                         <label>ตำแหน่ง:</label>
-                                        <input class="form-control" type="" name="">
+                                        <input class="form-control" type="" name="position_record">
                                     </div>
                                 </div>
                                 
                                 <div class="form-group row">
                                     <div class="col-lg-3">
                                         <label>ชื่อผู้ตรวจรายงานการประชุม:</label>
-                                        <input class="form-control" type="" name="">
+                                        <input class="form-control" type="" name="name_reporter">
                                     </div>
                                     <div class="col-lg-3">
                                         <label>ตำแหน่ง:</label>
-                                        <input class="form-control" type="" name="">
+                                        <input class="form-control" type="" name="position_reporter">
                                     </div>
                                 </div>
                                 
                                 <div class="form-group row">
                                     <div class="col-lg-3">
                                         <label>ชื่อผู้รับรองการประชุม:</label>
-                                        <input class="form-control" type="" name="">
+                                        <input class="form-control" type="" name="name_guarantee">
                                     </div>
                                     <div class="col-lg-3">
                                         <label>ตำแหน่ง ประธานสภาสันติสุขตำบล:</label>
-                                        <input class="form-control" type="" name="">
+                                        <input class="form-control" type="" name="position_guarantee">
                                     </div>
                                 </div>
                             </div>
@@ -364,4 +374,39 @@
     <script src="{{ asset('js/pages/crud/datatables/data-sources/html.js') }}" type="text/javascript"></script>
     <!--end::Page Scripts-->
     {{-- <script src="{{ asset('js/pages/crud/forms/widgets/select.js') }}" type="text/javascript"></script> --}}
+
+
+
+    
+    <script>
+        function myFunction(data) {
+          var myobj = document.getElementById(data);
+          myobj.remove();
+        }
+      </script>
+      <script>
+      const chooseFile = document.getElementById("choose-file");
+      const imgPreview = document.getElementById("img-preview");
+      
+      chooseFile.addEventListener("change", function () {
+        getImgData();
+      });
+      
+      function getImgData() {
+        const files = chooseFile.files[0];
+        if (files) {
+          const fileReader = new FileReader();
+          fileReader.readAsDataURL(files);
+          fileReader.addEventListener("load", function () {
+            imgPreview.style.display = "block";
+            imgPreview.innerHTML = 'รูปใหม่<img src="' + this.result + '" />';
+          });    
+        }
+      }
+      </script>
+    
+    <!-- upload file -->
+    <script src="{{ asset('js/upload_file/upload_file.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/upload_file/upload_file_multiples.js') }}" type="text/javascript"></script>
+    <!-- upload file -->
 @endsection
