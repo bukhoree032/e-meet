@@ -17,6 +17,20 @@ return [
             'section' => 'MENU',
         ],
         [
+            'title' => 'บันทึกการประชุม',
+            'root' => true,
+            'icon' => 'media/svg/icons/Files/Selected-file.svg',
+            'page' => 'pages/meeting',
+            'new-tab' => false,
+        ],
+        [
+            'title' => 'รายงานการประชุม',
+            'root' => true,
+            'icon' => 'media/svg/icons/Files/Selected-file.svg',
+            'page' => 'pages/report',
+            'new-tab' => false,
+        ],
+        [
             'title' => 'จัดการ',
             'icon' => 'media/svg/icons/Layout/Layout-4-blocks.svg',
             'bullet' => 'line',
