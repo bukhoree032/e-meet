@@ -5,7 +5,7 @@ namespace Modules\Manage\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Manage\Repositories\Repository as Repository;
+use Modules\Manage\Repositories\ReportRepository as Repository;
 use Modules\Manage\Repositories\FarmesRepository as FarmesRepository;
 
 use Illuminate\Support\Str;
@@ -15,10 +15,9 @@ class ReportmeetingController extends UploadeFileController
 {
     protected $Repository;
 
-    public function __construct(Repository $Repository,FarmesRepository $FarmesRepository)
+    public function __construct(Repository $Repository)
     {
         $this->Repository = $Repository;
-        $this->FarmesRepository = $FarmesRepository;
     }
 
     /**
@@ -30,10 +29,10 @@ class ReportmeetingController extends UploadeFileController
         $page_title = 'รายงานการประชุม';
         $page_description = '';
 
-        $db = "meeting";
+        $db = "reportmeeting";
         
         $data['result'] = $this->Repository->index($db);
-
+        
         return view('manage::reeportmeeting.manage_report', compact('page_title', 'page_description'),$data);
     }
 
@@ -58,18 +57,16 @@ class ReportmeetingController extends UploadeFileController
      * Show the form for creating a new resource.
      * @return Renderable
      */
-    public function CreateMeeting(Request $request)
+    public function insert(Request $request)
     {
-        $data['resulta'] = $this->Repository->insert($request->all(),'classModelMeeting');
+        $data['resulta'] = $this->Repository->insert($request->all(),'classModelReportmeeting');
         
-        // $data['resultID'] = $this->FarmesRepository->ShowId($data['resulta']['id'],'farmes');
 
-        $data['result'] = $this->Repository->show('flowers');
         $data['resultAmphures'] = $this->Repository->show('amphures');
         $data['resultProvinces'] = $this->Repository->show('provinces');
         $data['resultDistricts'] = $this->Repository->districts('provinces');
         
-        return redirect()->route('manage.create.meeting2',$data['resulta']['id']);
+        return redirect()->route('index.report');
     } 
     
     public function CreateMeeting2($id)

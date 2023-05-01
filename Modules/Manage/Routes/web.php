@@ -35,7 +35,7 @@ Route::prefix('manage')->name('manage.')->group(function() {
     Route::get('/pages/DetailReport/{id}/', 'ReportmeetingController@PageDetailMeeting')->name('page.detail_report');
 
     Route::get('/pages/create-report', 'ReportmeetingController@create')->name('create.report'); //1111111111111111111111111
-    Route::post('/pages/create-insert/report/', 'ReportmeetingController@CreateMeeting')->name('insert.report'); //2222222222222222
+    Route::post('/pages/create-insert/report/', 'ReportmeetingController@insert')->name('insert.report'); //2222222222222222
 
     Route::get('/pages/EditReport/{id}/', 'ReportmeetingController@PageEditMeeting')->name('edit.report');
     Route::post('/pages/EditFarmeStep1/{id}/', 'ReportmeetingController@EditFarmeStep1')->name('update.farme1');
