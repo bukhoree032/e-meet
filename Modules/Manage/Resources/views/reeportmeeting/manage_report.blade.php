@@ -30,11 +30,11 @@
                         <thead>
                             <tr>
                                 <th>ลำดับ</th>
-                                <th>ตำบล</th>
+                                <th>รายงานประจำเดือน</th>
                                 <th>ครั้งที่</th>
-                                {{-- <th>lat/สถานที่</th> --}}
-                                <th>ว/ด/ป</th>
-                                <th>สถานที่</th>
+                                <th>ตำบล</th>
+                                <th>อำเภอ</th>
+                                <th>จังหวัด</th>
                                 <th>เวลาแก้ไข</th>
                                 <th>จัดการ</th>
                             </tr>
@@ -43,15 +43,16 @@
                             @foreach ($result as $item =>$value)
                             <tr>
                                 <td>{{ $item+1 }}</td>
+                                <td>{{ $value->month }}/{{ $value->year }}</td>
+                                <td>{{ $value->round }}/{{ $value->year_round }}</td>
                                 <td>{{ $value->district }}</td>
-                                <td>{{ $value->round }}</td>
-                                <td>{{ $value->meeting_date }}</td>
-                                <td>{{ $value->location }}</td>
+                                <td>{{ $value->amphur }}</td>
+                                <td>{{ $value->province }}</td>
                                 <td>{{ $value->updated_at }}</td>
                                 <td>
-                                    <a class="fas fa-eye pointer" href="#"></a>
+                                    <a class="fas fa-eye pointer" href="{{ route('manage.page.detail_report',$value->id) }}"></a>
                                     <a class="fas fa-edit pointer" href="#" style="margin-left: 15px" ></a>
-                                    <a onclick="return confirm('ท่านต้องการลบข้อมูลใช่หรือไม่ ?')" class="far fa-trash-alt pointer" href="#" style="margin-left: 15px"></a>
+                                    <a onclick="return confirm('ท่านต้องการลบข้อมูลใช่หรือไม่ ?')" class="far fa-trash-alt pointer" href="{{ route('manage.delet.report',$value->id) }}" style="margin-left: 15px"></a>
                                 
                                     {{-- <a class="fas fa-eye pointer" href="{{ route('manage.page.detail_meeting',$value->id) }}"></a>
                                     <a class="fas fa-edit pointer" href="{{ route('manage.edit.meeting',$value->id) }}" style="margin-left: 15px" ></a>

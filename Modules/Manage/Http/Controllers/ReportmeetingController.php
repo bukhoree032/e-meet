@@ -107,52 +107,16 @@ class ReportmeetingController extends UploadeFileController
         return redirect()->route('index.meeting');
     }
 
-    public function detail_meeting($id)
+    public function PageDetailReport($id)
     {
-        $page_title = 'รายละเอียดข้อมูลเกษตกร หรือฟาร์ม';
+        $page_title = 'เพิ่มข้อมูลร้านค้า';
         $page_description = '';
 
-        
-        $data['result'] = $this->Repository->ShowId($id,'farmes');
+        $data['resultID'] = $this->Repository->ShowId($id,'reportmeeting');
 
-        if(isset($data['result']->FA_SUB_DISTRICT)) {
-            $data['result']->FA_SUB_DISTRICT = $this->Repository->ProvinceJoin($data['result']->FA_SUB_DISTRICT);
-        }
-        if(isset($data['result']->FA_FLOWER)){
-            $data['result']->FA_FLOWER = unserialize($data['result']->FA_FLOWER);
-        }
-        if(isset($data['result']->FA_CUSTOMER_GROUP)){
-            $data['result']->FA_CUSTOMER_GROUP = unserialize($data['result']->FA_CUSTOMER_GROUP);
-        }
-        if(isset($data['result']->FA_SEND_OTHER)){
-            $data['result']->FA_SEND_OTHER = unserialize($data['result']->FA_SEND_OTHER);
-        }
-        if(isset($data['result']->FA_CONDITION_SELL_OTHER)){
-            $data['result']->FA_CONDITION_SELL_OTHER = unserialize($data['result']->FA_CONDITION_SELL_OTHER);
-        }
-        if(isset($data['result']->FA_PROMOTION_OTHER)){
-            $data['result']->FA_PROMOTION_OTHER = unserialize($data['result']->FA_PROMOTION_OTHER);
-        }
-        if(isset($data['result']->FA_VOLUME)){
-            $data['result']->FA_VOLUME = unserialize($data['result']->FA_VOLUME);
-        }
-        if(isset($data['result']->FA_REMAINING)){
-            $data['result']->FA_REMAINING = unserialize($data['result']->FA_REMAINING);
-        }
-        if(isset($data['result']->FA_REMAINING_CAUSE_OTHER)){
-            $data['result']->FA_REMAINING_CAUSE_OTHER = unserialize($data['result']->FA_REMAINING_CAUSE_OTHER);
-        }
-        if(isset($data['result']->FA_SET_PRICE)){
-            $data['result']->FA_SET_PRICE = unserialize($data['result']->FA_SET_PRICE);
-        }
-        if(isset($data['result']->FA_PROBLEM)){
-            $data['result']->FA_PROBLEM = unserialize($data['result']->FA_PROBLEM);
-        }
-        if(isset($data['result']->file_multiple)){
-            $data['result']->file_multiple = unserialize($data['result']->file_multiple);
-        }
+        $data['resultID']->activity = unserialize($data['resultID']->activity);
 
-        return view('manage::farme.detail_farme',compact('page_title', 'page_description'),$data);
+        return view('manage::reeportmeeting.detail_report',compact('page_title', 'page_description'),$data);
     }
     
     public function PageEditMeeting(Request $request,$id)
@@ -162,16 +126,6 @@ class ReportmeetingController extends UploadeFileController
 
         $data['resultID'] = $this->FarmesRepository->ShowId($id,'farmes');
 
-        $data['resultID']['result'][0]->file_multiple = unserialize($data['resultID']['result'][0]->file_multiple);
-        $data['resultID']['result'][0]->FA_CUSTOMER_GROUP = unserialize($data['resultID']['result'][0]->FA_CUSTOMER_GROUP);
-        $data['resultID']['result'][0]->FA_PROBLEM_PLANT = unserialize($data['resultID']['result'][0]->FA_PROBLEM_PLANT);
-        $data['resultID']['result'][0]->FA_SEND = unserialize($data['resultID']['result'][0]->FA_SEND);
-        $data['resultID']['result'][0]->FA_SELL = unserialize($data['resultID']['result'][0]->FA_SELL);
-        $data['resultID']['result'][0]->FA_REMAINING = unserialize($data['resultID']['result'][0]->FA_REMAINING);
-        $data['resultID']['result'][0]->FA_REMAINING_CAUSE = unserialize($data['resultID']['result'][0]->FA_REMAINING_CAUSE);
-        $data['resultID']['result'][0]->FA_SET_PRICE = unserialize($data['resultID']['result'][0]->FA_SET_PRICE);
-        $data['resultID']['result'][0]->FA_PROBLEM = unserialize($data['resultID']['result'][0]->FA_PROBLEM);
-        
         $data['ProvinceJoin'] = $this->Repository->ProvinceJoin($data['resultID']['result'][0]->FA_SUB_DISTRICT);
 
         $data['result'] = $this->Repository->show('flowers');

@@ -72,16 +72,18 @@
                             <label>แบบรายงานผลการดำเนินงานประจำเดือน:</label>
                             <select id="pro" class="form-control" name="month" style="width: 100%;">
                                 <option selected>--เดือน--</option>
-                                <option value="2560">2560ๅๅๅๅๅๅๅๅๅๅๅๅๅๅๅๅๅๅ</option>
-                                <option value="2561">2561</option>
-                                <option value="2562">2562</option>
-                                <option value="2563">2563</option>
-                                <option value="2564">2564</option>
-                                <option value="2565">2565</option>
-                                <option value="2566">2566</option>
-                                <option value="2567">2567</option>
-                                <option value="2568">2568</option>
-                                <option value="2569">2569</option>
+                                <option value="มกราคม">มกราคม</option>
+                                <option value="กุมภาพันธ์">กุมภาพันธ์</option>
+                                <option value="มีนาคม">มีนาคม</option>
+                                <option value="เมษายน">เมษายน</option>
+                                <option value="พฤษภาคม">พฤษภาคม</option>
+                                <option value="มิถุนายน">มิถุนายน</option>
+                                <option value="กรกฎาคม">กรกฎาคม</option>
+                                <option value="สิงหาคม">สิงหาคม</option>
+                                <option value="กันยายน">กันยายน</option>
+                                <option value="ตุลาคม">ตุลาคม</option>
+                                <option value="พฤศจิกายน">พฤศจิกายน</option>
+                                <option value="ธันวาคม">ธันวาคม</option>
                             </select>
                         </div>
                         <div class="col-lg-4">
@@ -118,47 +120,65 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-4">
                             <label>สภาสันติสุขตำบล:</label>
-                            <input type="text" class="form-control" name="district" placeholder="สภาสันติสุขตำบล" />
+                            <input type="text" class="form-control" name="district" value="สะเตง" placeholder="สภาสันติสุขตำบล" />
+                        </div>
+                        <div class="col-lg-4">
+                            <label>สภาสันติสุขอำเภอ:</label>
+                            <input type="text" class="form-control" name="amphur" value="เมือง" placeholder="สภาสันติสุขอำเภอ" />
+                        </div>
+                        <div class="col-lg-4">
+                            <label>สภาสันติสุขจังหวัด:</label>
+                            <input type="text" class="form-control" name="province" value="ยะลา" placeholder="สภาสันติสุขจังหวัด" />
                         </div>
                     </div>
                     
                     <div class="col-lg-12"><b>แบบรายงานผลการดำเนินงานประจำเดือน : ส่วนที่ 1</b></div>
                     <br>
                     <div class="form-group row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-6">
                             <label>รายงานการประชุมสภาสันติสุขตำบล:</label>
-                            <input type="text" class="form-control" name="district1" placeholder="รายงานการประชุมสภาสันติสุขตำบล" />
+                            <input type="text" class="form-control" name="district1" value="สะเตง"  placeholder="รายงานการประชุมสภาสันติสุขตำบล" />
                         </div>
-                        <div class="col-lg-4 ">
+                        <div class="col-lg-6">
                             <label>ประจำเดือน</label>
                             <select id="pro" class="form-control" name="month1" style="width: 100%;">
                                 <option selected>--เดือน--</option>
-                                <option value="2560">2560ๅๅๅๅๅๅๅๅๅๅๅๅๅๅๅๅๅๅ</option>
-                                <option value="2561">2561</option>
-                                <option value="2562">2562</option>
-                                <option value="2563">2563</option>
-                                <option value="2564">2564</option>
-                                <option value="2565">2565</option>
-                                <option value="2566">2566</option>
-                                <option value="2567">2567</option>
-                                <option value="2568">2568</option>
-                                <option value="2569">2569</option>
+                                <option value="มกราคม">มกราคม</option>
+                                <option value="กุมภาพันธ์">กุมภาพันธ์</option>
+                                <option value="มีนาคม">มีนาคม</option>
+                                <option value="เมษายน">เมษายน</option>
+                                <option value="พฤษภาคม">พฤษภาคม</option>
+                                <option value="มิถุนายน">มิถุนายน</option>
+                                <option value="กรกฎาคม">กรกฎาคม</option>
+                                <option value="สิงหาคม">สิงหาคม</option>
+                                <option value="กันยายน">กันยายน</option>
+                                <option value="ตุลาคม">ตุลาคม</option>
+                                <option value="พฤศจิกายน">พฤศจิกายน</option>
+                                <option value="ธันวาคม">ธันวาคม</option>
                             </select>
                         </div>
-                        <div class="col-lg-4 ">
+                        <div class="col-lg-6 margin_top">
                             <label>วันที่/เดือน/ปี:</label>
-                            <input type="text" class="form-control" name="date_report" placeholder="วันที่/เดือน/ปี" />
+                            <input type="date" class="form-control" name="date_report" placeholder="วันที่/เดือน/ปี" value="{{"2566-01-01"}}"/>
                         </div>
 
                         <div class="col-lg-6  margin_top">
                             <label>สถานที่:</label>
                             <input type="text" class="form-control" name="location" placeholder="สถานที่" />
                         </div>
-                            <div class="col-lg-6 margin_top">
-                                <label>ตำบล/อำเภอ/จังหวัด:</label>
-                                <input type="text" class="form-control" name="district2" placeholder="" />
+                            <div class="col-lg-4 margin_top">
+                                <label>ตำบล:</label>
+                                <input type="text" class="form-control" name="district2" value="สะเตง" placeholder="" />
+                            </div>
+                            <div class="col-lg-4 margin_top">
+                                <label>อำเภอ:</label>
+                                <input type="text" class="form-control" name="amphur2" value="เมือง" placeholder="" />
+                            </div>
+                            <div class="col-lg-4 margin_top">
+                                <label>จังหวัด:</label>
+                                <input type="text" class="form-control" name="province2" value="ยะลา" placeholder="" />
                             </div>
                         </div>
 
@@ -253,18 +273,18 @@
                                 <label>หมายเหตุ</label>
                                 <input type="text" class="form-control" name="activity[0][note]" placeholder="หมายเหตุ" />
                             </div>
-                            <div class="col-lg-12 margin_top">
+                            {{-- <div class="col-lg-12 margin_top">
                                 <label>หมายเหตุ:</label>
                                 <div class="col-lg-12" style="margin-top: 20px">
                                     <div class="field" align="left">
-                                        <input type="file" style="display:none" id="upload-images" name="activity[0][pictures]" multiple="multiple"></input>
-                                        <div id="uploads" class="drop-areas">
+                                        <input type="file" style="display:none" id="upload-images1" name="activity[0][pictures]" multiple="multiple"></input>
+                                        <div id="uploads1" class="drop-areas">
                                             เพิ่มรูปภาพกลุ่มทั้งหมด +
                                         </div>
                                         <div id="thumbnails"></div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                         <h3 style="margin-top: 30px">กิจกรรมที่ 2</h3>
                         <div class="form-group row">
@@ -302,7 +322,7 @@
                                 <input type="text" class="form-control" name="activity[1][note]" placeholder="หมายเหตุ" />
                             </div>
                             <div class="col-lg-12 margin_top">
-                                <label>หมายเหตุ:</label>
+                                {{-- <label>หมายเหตุ:</label>
                                 <div class="col-lg-12" style="margin-top: 20px">
                                     <div class="field" align="left">
                                         <input type="file" style="display:none" id="upload-images" name="activity[1][pictures]" multiple="multiple"></input>
@@ -311,7 +331,7 @@
                                         </div>
                                         <div id="thumbnails"></div>
                                     </div>
-                                </div>
+                                </div> --}}
 
                         <h3 style="margin-top: 30px">กิจกรรมที่ 3</h3>
                         <div class="form-group row">
@@ -348,18 +368,18 @@
                                 <label>หมายเหตุ</label>
                                 <input type="text" class="form-control" name="activity[2][note]" placeholder="หมายเหตุ" />
                             </div>
-                            <div class="col-lg-12 margin_top">
+                            {{-- <div class="col-lg-12 margin_top">
                                 <label>หมายเหตุ:</label>
                                 <div class="col-lg-12" style="margin-top: 20px">
                                     <div class="field" align="left">
-                                        <input type="file" style="display:none" id="upload-images" name="activity[2][pictures]" multiple="multiple"></input>
-                                        <div id="uploads" class="drop-areas">
+                                        <input type="file" style="display:none" id="upload-images2" name="activity[2][pictures]" multiple="multiple"></input>
+                                        <div id="uploads2" class="drop-areas">
                                             เพิ่มรูปภาพกลุ่มทั้งหมด +
                                         </div>
                                         <div id="thumbnails"></div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
 
 
@@ -418,33 +438,6 @@
 
 
 
-
-<script>
-    function myFunction(data) {
-      var myobj = document.getElementById(data);
-      myobj.remove();
-    }
-  </script>
-  <script>
-  const chooseFile = document.getElementById("choose-file");
-  const imgPreview = document.getElementById("img-preview");
-  
-  chooseFile.addEventListener("change", function () {
-    getImgData();
-  });
-  
-  function getImgData() {
-    const files = chooseFile.files[0];
-    if (files) {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(files);
-      fileReader.addEventListener("load", function () {
-        imgPreview.style.display = "block";
-        imgPreview.innerHTML = 'รูปใหม่<img src="' + this.result + '" />';
-      });    
-    }
-  }
-  </script>
 
 <!-- upload file -->
 <script src="{{ asset('js/upload_file/upload_file.js') }}" type="text/javascript"></script>
