@@ -27,7 +27,7 @@
 
                 <div id="kt_header_menu" class="header-menu header-menu-mobile {{ Metronic::printClasses('header_menu', false) }}" {{ Metronic::printAttrs('header_menu') }}>
                     <ul class="menu-nav {{ Metronic::printClasses('header_menu_nav', false) }}">
-                    <h2>E-Meeting</h2>
+                    <h2>E-Reeport</h2>
                     {{-- {{ Menu::renderHorMenu(config('menu_header.items')) }} --}}
                     </ul>
                 </div>
