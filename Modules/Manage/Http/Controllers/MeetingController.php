@@ -60,6 +60,9 @@ class MeetingController extends UploadeFileController
      */
     public function CreateMeeting(Request $request)
     {
+        $request->no_meeting = serialize($request->no_meeting);
+        $request->p_meeting = serialize($request->p_meeting);
+
         $data['resulta'] = $this->Repository->insert($request->all(),'classModelMeeting');
         
         // $data['resultID'] = $this->FarmesRepository->ShowId($data['resulta']['id'],'farmes');
@@ -71,6 +74,38 @@ class MeetingController extends UploadeFileController
         
         return redirect()->route('manage.create.meeting2',$data['resulta']['id']);
     } 
+    
+    public function PageEditMeeting($id)
+    {
+        $page_title = 'แก้ไขข้อมูลบันทึกการประชุม';
+        $page_description = '';
+
+        $data['resultID'] = $this->Repository->ShowId($id,'meeting');
+
+        $data['resultID']->no_meeting = unserialize($data['resultID']->no_meeting);
+        $data['resultID']->p_meeting = unserialize($data['resultID']->p_meeting);
+
+        // $data['ProvinceJoin'] = $this->Repository->ProvinceJoin($data['resultID']['result'][0]->FA_SUB_DISTRICT);
+
+        // $data['result'] = $this->Repository->show('meeting');
+        
+        $data['resultAmphures'] = $this->Repository->show('amphures');
+        $data['resultProvinces'] = $this->Repository->show('provinces');
+        $data['resultDistricts'] = $this->Repository->districts('provinces');
+
+        return view('manage::meeting.edit_meeting', compact('page_title', 'page_description'),$data);
+    }
+    
+    
+    public function UpdateMeeting(Request $request,$id)
+    {
+        $request['no_meeting'] = serialize($request['no_meeting']);
+        $request['p_meeting'] = serialize($request['p_meeting']);
+
+        $data['result'] = $this->Repository->update($request->all(),$id,'classModelMeeting');
+        
+        return redirect()->route('index.meeting');
+    }
     
     public function CreateMeeting2($id)
     {
@@ -110,79 +145,17 @@ class MeetingController extends UploadeFileController
         return redirect()->route('index.meeting');
     }
 
-    public function detail_meeting($id)
+    public function Detail_meeting($id)
     {
-        $page_title = 'รายละเอียดข้อมูลเกษตกร หรือฟาร์ม';
+        $page_title = 'บันทึกการประชุม';
         $page_description = '';
-
         
-        $data['result'] = $this->Repository->ShowId($id,'farmes');
+        $data['resultID'] = $this->Repository->ShowId($id,'meeting');
 
-        if(isset($data['result']->FA_SUB_DISTRICT)) {
-            $data['result']->FA_SUB_DISTRICT = $this->Repository->ProvinceJoin($data['result']->FA_SUB_DISTRICT);
-        }
-        if(isset($data['result']->FA_FLOWER)){
-            $data['result']->FA_FLOWER = unserialize($data['result']->FA_FLOWER);
-        }
-        if(isset($data['result']->FA_CUSTOMER_GROUP)){
-            $data['result']->FA_CUSTOMER_GROUP = unserialize($data['result']->FA_CUSTOMER_GROUP);
-        }
-        if(isset($data['result']->FA_SEND_OTHER)){
-            $data['result']->FA_SEND_OTHER = unserialize($data['result']->FA_SEND_OTHER);
-        }
-        if(isset($data['result']->FA_CONDITION_SELL_OTHER)){
-            $data['result']->FA_CONDITION_SELL_OTHER = unserialize($data['result']->FA_CONDITION_SELL_OTHER);
-        }
-        if(isset($data['result']->FA_PROMOTION_OTHER)){
-            $data['result']->FA_PROMOTION_OTHER = unserialize($data['result']->FA_PROMOTION_OTHER);
-        }
-        if(isset($data['result']->FA_VOLUME)){
-            $data['result']->FA_VOLUME = unserialize($data['result']->FA_VOLUME);
-        }
-        if(isset($data['result']->FA_REMAINING)){
-            $data['result']->FA_REMAINING = unserialize($data['result']->FA_REMAINING);
-        }
-        if(isset($data['result']->FA_REMAINING_CAUSE_OTHER)){
-            $data['result']->FA_REMAINING_CAUSE_OTHER = unserialize($data['result']->FA_REMAINING_CAUSE_OTHER);
-        }
-        if(isset($data['result']->FA_SET_PRICE)){
-            $data['result']->FA_SET_PRICE = unserialize($data['result']->FA_SET_PRICE);
-        }
-        if(isset($data['result']->FA_PROBLEM)){
-            $data['result']->FA_PROBLEM = unserialize($data['result']->FA_PROBLEM);
-        }
-        if(isset($data['result']->file_multiple)){
-            $data['result']->file_multiple = unserialize($data['result']->file_multiple);
-        }
+        $data['resultID']->no_meeting = unserialize($data['resultID']->no_meeting);
+        $data['resultID']->p_meeting = unserialize($data['resultID']->p_meeting);
 
-        return view('manage::farme.detail_farme',compact('page_title', 'page_description'),$data);
-    }
-    
-    public function PageEditMeeting(Request $request,$id)
-    {
-        $page_title = 'แก้ไขข้อมูลดกลุ่มเกษตรกร และฟาร์ม';
-        $page_description = '';
-
-        $data['resultID'] = $this->FarmesRepository->ShowId($id,'farmes');
-
-        $data['resultID']['result'][0]->file_multiple = unserialize($data['resultID']['result'][0]->file_multiple);
-        $data['resultID']['result'][0]->FA_CUSTOMER_GROUP = unserialize($data['resultID']['result'][0]->FA_CUSTOMER_GROUP);
-        $data['resultID']['result'][0]->FA_PROBLEM_PLANT = unserialize($data['resultID']['result'][0]->FA_PROBLEM_PLANT);
-        $data['resultID']['result'][0]->FA_SEND = unserialize($data['resultID']['result'][0]->FA_SEND);
-        $data['resultID']['result'][0]->FA_SELL = unserialize($data['resultID']['result'][0]->FA_SELL);
-        $data['resultID']['result'][0]->FA_REMAINING = unserialize($data['resultID']['result'][0]->FA_REMAINING);
-        $data['resultID']['result'][0]->FA_REMAINING_CAUSE = unserialize($data['resultID']['result'][0]->FA_REMAINING_CAUSE);
-        $data['resultID']['result'][0]->FA_SET_PRICE = unserialize($data['resultID']['result'][0]->FA_SET_PRICE);
-        $data['resultID']['result'][0]->FA_PROBLEM = unserialize($data['resultID']['result'][0]->FA_PROBLEM);
-        
-        $data['ProvinceJoin'] = $this->Repository->ProvinceJoin($data['resultID']['result'][0]->FA_SUB_DISTRICT);
-
-        $data['result'] = $this->Repository->show('flowers');
-        $data['resultAmphures'] = $this->Repository->show('amphures');
-        $data['resultProvinces'] = $this->Repository->show('provinces');
-        $data['resultDistricts'] = $this->Repository->districts('provinces');
-
-        return view('manage::farme.edit_farme', compact('page_title', 'page_description'),$data);
+        return view('manage::meeting.detail_meeting', compact('page_title', 'page_description'),$data);
     }
 
     public function delet($id)

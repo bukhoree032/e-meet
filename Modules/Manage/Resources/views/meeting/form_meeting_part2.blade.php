@@ -83,7 +83,7 @@
                                 </div>
                                 <div class="col-lg-4  margin_top">
                                     <label>วัน/เดือน/ปี:</label>
-                                    <input type="text" class="form-control " name="r_meeting_date" placeholder="วัน/เดือน/ปี" />
+                                    <input type="date" class="form-control " name="r_meeting_date" placeholder="วัน/เดือน/ปี" value="{{"2566-01-01"}}"/>
                                 </div>
                             </div>
                             <div class="form-group row">

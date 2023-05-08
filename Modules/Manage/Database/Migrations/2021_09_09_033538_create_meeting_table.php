@@ -84,14 +84,8 @@ class CreateMeetingTable extends Migration
             $table->text('name_volunteer')->nullable();
             $table->text('lastname_volunteer')->nullable();
             $table->text('position_volunteer')->nullable();
-            $table->text('title_no_meeting')->nullable();
-            $table->text('name_no_meeting')->nullable();
-            $table->text('lastname_no_meeting')->nullable();
-            $table->text('position_no_meeting')->nullable();
-            $table->text('reason_no_meeting')->nullable();
-            $table->text('title_p_meeting')->nullable();
-            $table->text('name_p_meeting')->nullable();
-            $table->text('lastname_p_meeting')->nullable();
+            $table->text('no_meeting')->nullable();
+            $table->text('p_meeting')->nullable();
             $table->text('begin_meet')->nullable();
             $table->text('agenda1')->nullable();
             $table->text('r_meet_no')->nullable();

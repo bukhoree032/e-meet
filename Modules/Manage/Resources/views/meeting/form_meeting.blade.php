@@ -38,7 +38,7 @@
                     <div class="form-group row">
                         <div class="col-lg-4">
                             <label>รายงานการประชุมสภาสันติสุขตำบล:</label>
-                            <input type="text" class="form-control" name="district" placeholder="ตำบล" />
+                            <input type="text" class="form-control" name="district" placeholder="ตำบล" value="สะเตง" />
                         </div>
                         <div class="col-lg-4">
                             <label>ครั้งที่:</label>
@@ -46,7 +46,7 @@
                         </div>
                         <div class="col-lg-4">
                             <label>วัน/เดือน/ปี:</label>
-                            <input type="text" class="form-control" name="meeting_date" placeholder="วัน/เดือน/ปี ที่ประชุม" />
+                            <input type="date" class="form-control" name="meeting_date" placeholder="วัน/เดือน/ปี ที่ประชุม" value="{{"2566-01-01"}}"/>
                         </div>
                         <div class="col-lg-12 margin_top">
                             <label>สถานที่ประชุม:</label>
@@ -402,10 +402,12 @@
                     <div class="col-lg-12"><b>ผู้ไม่มาประชุม (ให้ลงเฉพาะสมาชิกสภาสันติสุข)</b></div>
                     <br>
                     <div class="form-group row">
+                        
+                        @for($r = 1; $r <= 3; $r++)
                         <div class="col-lg-2 margin_top">
                             <label>คำนำหน้า:</label>
                             <span class="text-danger">*</span></label>
-                            <select id="pro" class="form-control" name="title_no_meeting[1]" style="width: 100%;">
+                            <select id="pro" class="form-control" name="no_meeting[{{ $r }}][title]" style="width: 100%;">
                                 <option value="" selected>-- คำนำหน้า --</option>
                                 <option value="นาย">นาย</option>
                                 <option value="นาง">นาง</option>
@@ -414,74 +416,21 @@
                         </div>
                         <div class="col-lg-2 margin_top">
                             <label>ชื่อ:</label>
-                            <input type="text" class="form-control" name="name_no_meeting[1]" placeholder="ชื่อ" />
+                            <input type="text" class="form-control" name="no_meeting[{{ $r }}][name]" placeholder="ชื่อ" />
                         </div>
                         <div class="col-lg-2 margin_top">
                             <label>นามสกุล:</label>
-                            <input type="text" class="form-control" name="lastname_no_meeting[1]" placeholder="นามสกุล" />
+                            <input type="text" class="form-control" name="no_meeting[{{ $r }}][lastname]" placeholder="นามสกุล" />
                         </div>
                         <div class="col-lg-3 margin_top">
                             <label>ตำแหน่ง:</label>
-                            <input type="text" class="form-control" name="position_no_meeting[1]" placeholder="ตำแหน่ง" />
+                            <input type="text" class="form-control" name="no_meeting[{{ $r }}][position]" placeholder="ตำแหน่ง" />
                         </div>
                         <div class="col-lg-3 margin_top">
                             <label>สาเหตุการไม่เข้าประชุม:</label>
-                            <input type="text" class="form-control" name="reason_no_meeting[1]" placeholder="สาเหตุการไม่เข้าประชุม" />
+                            <input type="text" class="form-control" name="no_meeting[{{ $r }}][reason]" placeholder="สาเหตุการไม่เข้าประชุม" />
                         </div>
-
-                        <div class="col-lg-2 margin_top">
-                            <label>คำนำหน้า:</label>
-                            <span class="text-danger">*</span></label>
-                            <select id="pro" class="form-control" name="title_no_meeting[2]" style="width: 100%;">
-                                <option value="" selected>-- คำนำหน้า --</option>
-                                <option value="นาย">นาย</option>
-                                <option value="นาง">นาง</option>
-                                <option value="นางสาว">นางสาว</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-2 margin_top">
-                            <label>ชื่อ:</label>
-                            <input type="text" class="form-control" name="name_no_meeting[2]" placeholder="ชื่อ" />
-                        </div>
-                        <div class="col-lg-2 margin_top">
-                            <label>นามสกุล:</label>
-                            <input type="text" class="form-control" name="lastname_no_meeting[2]" placeholder="นามสกุล" />
-                        </div>
-                        <div class="col-lg-3 margin_top">
-                            <label>ตำแหน่ง:</label>
-                            <input type="text" class="form-control" name="position_no_meeting[2]" placeholder="ตำแหน่ง" />
-                        </div>
-                        <div class="col-lg-3 margin_top">
-                            <label>สาเหตุการไม่เข้าประชุม:</label>
-                            <input type="text" class="form-control" name="reason_no_meeting[2]" placeholder="สาเหตุการไม่เข้าประชุม" />
-                        </div>
-
-                        <div class="col-lg-2 margin_top">
-                            <label>คำนำหน้า:</label>
-                            <span class="text-danger">*</span></label>
-                            <select id="pro" class="form-control" name="title_no_meeting[3]" style="width: 100%;">
-                                <option value="" selected>-- คำนำหน้า --</option>
-                                <option value="นาย">นาย</option>
-                                <option value="นาง">นาง</option>
-                                <option value="นางสาว">นางสาว</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-2 margin_top">
-                            <label>ชื่อ:</label>
-                            <input type="text" class="form-control" name="name_no_meeting[3]" placeholder="ชื่อ" />
-                        </div>
-                        <div class="col-lg-2 margin_top">
-                            <label>นามสกุล:</label>
-                            <input type="text" class="form-control" name="lastname_no_meeting[3]" placeholder="นามสกุล" />
-                        </div>
-                        <div class="col-lg-3 margin_top">
-                            <label>ตำแหน่ง:</label>
-                            <input type="text" class="form-control" name="position_no_meeting[3]" placeholder="ตำแหน่ง" />
-                        </div>
-                        <div class="col-lg-3 margin_top">
-                            <label>สาเหตุการไม่เข้าประชุม:</label>
-                            <input type="text" class="form-control" name="reason_no_meeting[3]" placeholder="สาเหตุการไม่เข้าประชุม" />
-                        </div>
+                        @endfor
                     </div>
 
 
@@ -504,10 +453,11 @@
                     <div class="col-lg-12"><b>ผู้เข้าร่วมประชุม (เฉพาะผู้ที่ไม่ได้เป็นสมาชิกสภาสันติสุข)</b></div>
                     <br>
                     <div class="form-group row">
+                        @for($r = 1; $r <= 4; $r++)
                         <div class="col-lg-2">
                             <label>คำนำหน้า:</label>
                             <span class="text-danger">*</span></label>
-                            <select id="pro" class="form-control" name="title_p_meeting[1]" style="width: 100%;">
+                            <select id="pro" class="form-control" name="p_meeting[{{ $r }}][title]" style="width: 100%;">
                                 <option value="" selected>-- คำนำหน้า --</option>
                                 <option value="นาย">นาย</option>
                                 <option value="นาง">นาง</option>
@@ -516,69 +466,14 @@
                         </div>
                         <div class="col-lg-5">
                             <label>ชื่อ:</label>
-                            <input type="text" class="form-control" name="name_p_meeting[1]" placeholder="ชื่อ" />
+                            <input type="text" class="form-control" name="p_meeting[{{ $r }}][name]" placeholder="ชื่อ" />
                         </div>
                         <div class="col-lg-5">
                             <label>นามสกุล:</label>
-                            <input type="text" class="form-control" name="lastname_p_meeting[1]" placeholder="นามสกุล" />
+                            <input type="text" class="form-control" name="p_meeting[{{ $r }}][lastname]" placeholder="นามสกุล" />
                         </div>
+                        @endfor
 
-                        <div class="col-lg-2 margin_top">
-                            <label>คำนำหน้า:</label>
-                            <span class="text-danger">*</span></label>
-                            <select id="pro" class="form-control" name="title_p_meeting[2]" style="width: 100%;">
-                                <option value="" selected>-- คำนำหน้า --</option>
-                                <option value="นาย">นาย</option>
-                                <option value="นาง">นาง</option>
-                                <option value="นางสาว">นางสาว</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-5 margin_top">
-                            <label>ชื่อ:</label>
-                            <input type="text" class="form-control" name="name_p_meeting[2]" placeholder="ชื่อ" />
-                        </div>
-                        <div class="col-lg-5 margin_top">
-                            <label>นามสกุล:</label>
-                            <input type="text" class="form-control" name="lastname_p_meeting[2]" placeholder="นามสกุล" />
-                        </div>
-                        
-                        <div class="col-lg-2 margin_top">
-                            <label>คำนำหน้า:</label>
-                            <span class="text-danger">*</span></label>
-                            <select id="pro" class="form-control" name="title_p_meeting[3]" style="width: 100%;">
-                                <option value="" selected>-- คำนำหน้า --</option>
-                                <option value="นาย">นาย</option>
-                                <option value="นาง">นาง</option>
-                                <option value="นางสาว">นางสาว</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-5 margin_top">
-                            <label>ชื่อ:</label>
-                            <input type="text" class="form-control" name="name_p_meeting[3]" placeholder="ชื่อ" />
-                        </div>
-                        <div class="col-lg-5 margin_top">
-                            <label>นามสกุล:</label>
-                            <input type="text" class="form-control" name="lastname_p_meeting[3]" placeholder="นามสกุล" />
-                        </div>
-                        
-                        <div class="col-lg-2 margin_top">
-                            <label>คำนำหน้า:</label>
-                            <span class="text-danger">*</span></label>
-                            <select id="pro" class="form-control" name="title_p_meeting[4]" style="width: 100%;">
-                                <option value="" selected>-- คำนำหน้า --</option>
-                                <option value="นาย">นาย</option>
-                                <option value="นาง">นาง</option>
-                                <option value="นางสาว">นางสาว</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-5 margin_top">
-                            <label>ชื่อ:</label>
-                            <input type="text" class="form-control" name="name_p_meeting[4]" placeholder="ชื่อ" />
-                        </div>
-                        <div class="col-lg-5 margin_top">
-                            <label>นามสกุล:</label>
-                            <input type="text" class="form-control" name="lastname_p_meeting[4]" placeholder="นามสกุล" />
-                        </div>
                     </div>
                 </div>
 

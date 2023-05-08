@@ -50,9 +50,9 @@
                                 <td>{{ $value->location }}</td>
                                 <td>{{ $value->updated_at }}</td>
                                 <td>
-                                    <a class="fas fa-eye pointer" href="#"></a>
-                                    <a class="fas fa-edit pointer" href="#" style="margin-left: 15px" ></a>
-                                    <a onclick="return confirm('ท่านต้องการลบข้อมูลใช่หรือไม่ ?')" class="far fa-trash-alt pointer" href="#" style="margin-left: 15px"></a>
+                                    <a class="fas fa-eye pointer" href="{{ route('manage.page.detail_meeting',$value->id) }}"></a>
+                                    <a class="fas fa-edit pointer" href="{{ route('manage.edit.meeting',$value->id) }}" style="margin-left: 15px" ></a>
+                                    <a onclick="return confirm('ท่านต้องการลบข้อมูลใช่หรือไม่ ?')" class="far fa-trash-alt pointer" href="{{ route('manage.delet.meeting',$value->id) }}" style="margin-left: 15px"></a>
                                 
                                     {{-- <a class="fas fa-eye pointer" href="{{ route('manage.page.detail_meeting',$value->id) }}"></a>
                                     <a class="fas fa-edit pointer" href="{{ route('manage.edit.meeting',$value->id) }}" style="margin-left: 15px" ></a>
