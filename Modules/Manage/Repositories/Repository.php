@@ -109,14 +109,8 @@ class Repository
      */
     public function insert($request,$db)
     {
-        $request['title_no_meeting'] = serialize($request['title_no_meeting']);
-        $request['name_no_meeting'] = serialize($request['name_no_meeting']);
-        $request['lastname_no_meeting'] = serialize($request['lastname_no_meeting']);
-        $request['position_no_meeting'] = serialize($request['position_no_meeting']);
-        $request['reason_no_meeting'] = serialize($request['reason_no_meeting']);
-        $request['title_p_meeting'] = serialize($request['title_p_meeting']);
-        $request['name_p_meeting'] = serialize($request['name_p_meeting']);
-        $request['lastname_p_meeting'] = serialize($request['lastname_p_meeting']);
+        $request['no_meeting'] = serialize($request['no_meeting']);
+        $request['p_meeting'] = serialize($request['p_meeting']);
         
         $insert = $this->$db::create($request);
         
